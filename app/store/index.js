@@ -1,9 +1,14 @@
+import jsonData from '~/assets/json/ingredients.json'
+
 export const state = () => ({
-  ingredients: []
+  ingredients: jsonData
 })
 
 export const getters = {
   ingredients: state => state.ingredients
+  // getIngredients(state) {
+  //   return state.ingredients
+  // }
 }
 
 export const mutations = {

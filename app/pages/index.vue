@@ -19,13 +19,13 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
+// import { mapGetters, mapActions } from 'vuex'
 
 export default {
-  computed: {
-    ...mapGetters(['ingredients']),
-    ...mapActions(['fetchIngredients'])
-  },
+  // computed: {
+  //   ...mapGetters(['ingredients', 'getIngredients']),
+  //   ...mapActions(['fetchIngredients'])
+  // },
   async asyncData({ store }) {
     // const ingredients = await store.dispatch('fetchIngredients') // eslint-disable-line
     // const ingredients = await ...mapActions(['fetchIngredients'])
