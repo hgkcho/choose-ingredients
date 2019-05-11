@@ -28,7 +28,7 @@
         </v-list-tile>
       </v-list>
     </v-navigation-drawer>
-    <v-toolbar hidden-xs-only color="#44d" dense fixed clipped-left app>
+    <v-toolbar hidden-xs-only dense fixed clipped-left app>
       <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
       <v-toolbar-title class="mr-5 align-center">
         <span class="title">Choose Ingredients</span>
@@ -45,7 +45,14 @@
         ></v-text-field>
       </v-layout>
     </v-toolbar>
-    <v-toolbar hidden-sm-and-up color="#44d" dense fixed clipped-left app>
+    <v-toolbar
+      hidden-sm-and-up
+      color="blue lighten-4"
+      dense
+      fixed
+      clipped-left
+      app
+    >
       <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
       <v-toolbar-title justify-center align-center class="mr-5 align-center">
         <div class="title">Choose Ingredients</div>

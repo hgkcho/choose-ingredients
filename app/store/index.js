@@ -1,22 +1,30 @@
 import jsonData from '~/assets/json/ingredients.json'
 
 export const state = () => ({
+  selectedIngredient: [],
   ingredients: jsonData
 })
 
 export const getters = {
-  ingredients: state => state.ingredients
-  // getIngredients(state) {
-  //   return state.ingredients
-  // }
+  ingredients: state => state.ingredients,
+  selectedIngredient: state => state.selectedIngredient
 }
 
 export const mutations = {
   addIngredient(state, { ingredient }) {
     state.ingredients.push(ingredient)
   },
-  clearIngredients(stat) {
+  clearIngredients(state) {
     state.ingredients = []
+  },
+  addSelected(state, { payload }) {
+    state.selectedIngredient.push({
+      id: payload.id,
+      name: payload.name
+    })
+  },
+  clearSelcted(state) {
+    state.selectedIngredient = []
   }
 }
 
@@ -36,5 +44,9 @@ export const actions = {
           }
         })
       )
+  },
+  addSelectedIngredient({ commit }, { payload }) {
+    commit('clearSelcted')
+    commit('addSelected', { payload })
   }
 }
