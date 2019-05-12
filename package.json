@@ -12,14 +12,12 @@
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "fix": "eslint --fix --ext .js,.vue src",
     "precommit": "npm run lint",
-    "md post": "processmd content/posts/markdown/**/*.md --stdout --preview 100 --outputDir content/posts/json > content/summary.json",
     "test": "jest"
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.3.6",
     "@nuxtjs/markdownit": "^1.2.4",
     "@nuxtjs/pwa": "^2.6.0",
-    "@nuxtjs/sitemap": "^1.2.0",
     "cross-env": "^5.2.0",
     "markdown-it-anchor": "^5.0.2",
     "markdown-it-highlight": "^0.2.0",

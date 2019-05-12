@@ -1,22 +1,9 @@
 import VuetifyLoaderPlugin from 'vuetify-loader/lib/plugin'
-import sourceFileArray from './content/posts/json/summary.json'
 import pkg from './package'
-import { sourceFileNameToUrl } from './sourceFileNameToUrl'
-
-const generateDynamicRoutes = callback => {
-  const routes = sourceFileArray.map(sourceFileName => {
-    return sourceFileNameToUrl(sourceFileName)
-  })
-  callback(null, routes)
-}
 
 export default {
   mode: 'spa',
   srcDir: 'app',
-
-  generate: {
-    routes: generateDynamicRoutes
-  },
 
   /*
    ** Headers of the page
@@ -59,16 +46,8 @@ export default {
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
-    '@nuxtjs/pwa',
-    '@nuxtjs/sitemap'
+    '@nuxtjs/pwa'
   ],
-  sitemap: {
-    path: '/sitemap.xml',
-    hostname: 'https://jmblog.jp',
-    generate: true,
-    exclude: ['/404'],
-    routes: generateDynamicRoutes
-  },
   /*
    ** Axios module configuration
    */
