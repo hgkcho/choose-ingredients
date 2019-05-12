@@ -1,0 +1,28 @@
+{
+  "fileMap": {
+    "content/posts/json/good.json": {
+      "title": "unchi",
+      "created_at": "2019-05-12T00:00:00.000Z",
+      "preview": "とりあえず書いてみた\n\ngood\ngoood",
+      "dir": "content/posts/json",
+      "base": "good.json",
+      "ext": ".json",
+      "sourceBase": "good.md",
+      "sourceExt": ".md"
+    },
+    "content/posts/json/unchi.json": {
+      "title": "unchi",
+      "created_at": "2019-05-12T00:00:00.000Z",
+      "preview": "とりあえず書いてみた\n\nunchi\nぶりぶりぶり",
+      "dir": "content/posts/json",
+      "base": "unchi.json",
+      "ext": ".json",
+      "sourceBase": "unchi.md",
+      "sourceExt": ".md"
+    }
+  },
+  "sourceFileArray": [
+    "content/posts/markdown/2019-05-12/good.md",
+    "content/posts/markdown/2019-05-12/unchi.md"
+  ]
+}

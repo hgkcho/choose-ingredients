@@ -1,0 +1,12 @@
+{
+  "title": "unchi",
+  "created_at": "2019-05-12T00:00:00.000Z",
+  "bodyContent": "# とりあえず書いてみた\n\n## good\ngoood",
+  "bodyHtml": "<h1>とりあえず書いてみた</h1>\n<h2>good</h2>\n<p>goood</p>\n",
+  "preview": "とりあえず書いてみた\n\ngood\ngoood",
+  "dir": "content/posts/json",
+  "base": "good.json",
+  "ext": ".json",
+  "sourceBase": "good.md",
+  "sourceExt": ".md"
+}
