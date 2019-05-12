@@ -1,5 +1,5 @@
 import VuetifyLoaderPlugin from 'vuetify-loader/lib/plugin'
-import sourceFileArray from './content/posts/json/summary.json'
+import { sourceFileArray } from './content/posts/json/summary.json'
 import pkg from './package'
 import { sourceFileNameToUrl } from './sourceFileNameToUrl'
 
