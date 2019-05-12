@@ -3,6 +3,7 @@
   "created_at": "2019-05-12T00:00:00.000Z",
   "bodyContent": "# とりあえず書いてみた\n\n## unchi\nぶりぶりぶり",
   "bodyHtml": "<h1>とりあえず書いてみた</h1>\n<h2>unchi</h2>\n<p>ぶりぶりぶり</p>\n",
+  "preview": "とりあえず書いてみた\n\nunchi\nぶりぶりぶり",
   "dir": "content/posts/json",
   "base": "unchi.json",
   "ext": ".json",
