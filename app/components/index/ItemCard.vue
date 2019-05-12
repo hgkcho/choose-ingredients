@@ -1,30 +1,12 @@
 <template>
-  <v-card class="my-2 pa-2">
-    <v-layout v-if="hasSelectedIngredients" row wrap>
-      <v-flex
-        v-for="ingredient in selectedIngredient"
-        :key="ingredient.id"
-        xs12
-        mx-2
-        class="text-xs-center selectedIngredient mb-2"
-      >
-        <v-card color="red lighten-4">
-          <v-card-title primary-title>
-            title
-          </v-card-title>
-          <v-card-text>
-            {{ ingredient.name }}
-          </v-card-text>
-        </v-card>
-      </v-flex>
+  <v-card>
+    <v-layout row wrap align-center justify-center>
+      <v-card-title primary-title class="title">
+        {{ title }}
+      </v-card-title>
     </v-layout>
     <v-layout row wrap align-center class="text-xs-center">
-      <v-flex
-        v-for="ingredient in $store.state.ingredients"
-        :key="ingredient.id"
-        xs6
-        align-center
-      >
+      <v-flex v-for="ingredient in items" :key="ingredient.id" xs6 align-center>
         <v-card class="ma-2 text-xs-center">
           <v-card-text>
             {{ ingredient.name }}
@@ -35,32 +17,46 @@
                 <v-btn outline color="info" class="mb-3">詳しく見る</v-btn>
               </div>
               <div>
-                <v-btn
+                <AddItemButton :category="category" :item="ingredient" />
+                <!-- <v-btn
                   outline
                   color="success"
                   @click="addIngredient(ingredient)"
                   >追加</v-btn
-                >
+                > -->
               </div>
             </v-layout>
           </v-card-actions>
         </v-card>
       </v-flex>
     </v-layout>
-    <v-layout row wrap>
-      <v-spacer></v-spacer>
-      <v-btn large outline round color="primary" dark>次へ</v-btn>
-    </v-layout>
   </v-card>
 </template>
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
+import AddItemButton from '~/components/index/AddItemButton'
 
 export default {
+  name: 'ItemCard',
+  components: {
+    AddItemButton
+  },
   props: {
-    title: { type: String, default: 'unchi' },
-    ingredients: { type: Array }
+    title: {
+      type: String,
+      required: true,
+      default: 'unchi'
+    },
+    category: {
+      type: String,
+      required: true
+    },
+    items: {
+      type: Object,
+      required: false,
+      default: () => ['naef', 'f']
+    }
   },
   computed: {
     ...mapGetters(['ingredients', 'selectedIngredient'])
@@ -81,9 +77,4 @@ export default {
 }
 </script>
 
-<style scoped>
-.selectedIngredients {
-  color: var(--v-primary-base);
-  background-color: var(--v-accent-lighten2);
-}
-</style>
+<style scoped></style>
