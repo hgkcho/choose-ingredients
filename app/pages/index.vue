@@ -1,17 +1,41 @@
 <template>
   <v-layout row wrap>
     <v-container>
-      <v-layout v-if="hasSelectedIngredients" row wrap>
-        <v-flex
-          v-for="ingredient in selectedIngredient"
+      <v-layout row wrap>
+        <!-- <v-flex
+          v-for="ingredient in selectedIngredients"
           :key="ingredient.id"
           xs12
           mx-2
           class="text-xs-center selectedIngredient mb-2"
-        >
-          <v-card color="red lighten-4">
+        > -->
+        <v-flex>
+          <v-card
+            v-if="protein.id || vegetable.id || seasoning.id"
+            color="red lighten-4"
+          >
             <v-card-text>
-              {{ ingredient.name }}
+              <span v-if="protein.id">
+                <v-chip outline color="red">
+                  <v-icon left>local_pizza</v-icon>
+                  {{ protein.name }}
+                  <v-icon right @click="removeProtein">close</v-icon>
+                </v-chip>
+              </span>
+              <span v-if="vegetable.id">
+                <v-chip outline color="red">
+                  <v-icon left>fastfood</v-icon>
+                  {{ vegetable.name }}
+                  <v-icon right @click="removeVegetable">close</v-icon>
+                </v-chip>
+              </span>
+              <span v-if="seasoning.id">
+                <v-chip outline color="red">
+                  <v-icon left>whatshot</v-icon>
+                  {{ seasoning.name }}
+                  <v-icon right @click="removeSeasoning">close</v-icon>
+                </v-chip>
+              </span>
             </v-card-text>
           </v-card>
         </v-flex>
@@ -26,7 +50,7 @@
           slider-color="yellow"
         >
           <v-tab v-for="n in 3" :key="n" ripple>
-            {{ categories[n - 1] }}
+            {{ titles[n - 1] }}
           </v-tab>
           <v-tab-item v-for="n in 3" :key="n">
             <v-card flat>
@@ -88,7 +112,13 @@ export default {
         return '次へ'
       }
     },
-    ...mapGetters(['ingredients', 'selectedIngredient'])
+    ...mapGetters([
+      'ingredients',
+      'selectedIngredient',
+      'protein',
+      'vegetable',
+      'seasoning'
+    ])
   },
   methods: {
     hasSelectedIngredients() {
@@ -110,7 +140,21 @@ export default {
         this.btnText = '確認'
       }
     },
-    ...mapActions(['addSelectedIngredient'])
+    removeProtein() {
+      this.clearProteinAction()
+    },
+    removeVegetable() {
+      this.clearVegetableAction()
+    },
+    removeSeasoning() {
+      this.clearSeasoningAction()
+    },
+    ...mapActions([
+      'addSelectedIngredient',
+      'clearProteinAction',
+      'clearVegetableAction',
+      'clearSeasoningAction'
+    ])
   }
 }
 </script>

@@ -61,13 +61,22 @@ export const actions = {
     commit('clearProtein')
     commit('addProtein', payload)
   },
+  clearProteinAction({ commit }) {
+    commit('clearProtein')
+  },
   addVegetableAction({ commit }, payload) {
     commit('clearVegetable')
     commit('addVegetable', payload)
   },
+  clearVegetableAction({ commit }) {
+    commit('clearVegetable')
+  },
   addSeasoningAction({ commit }, payload) {
     commit('clearSeasoning')
     commit('addSeasoning', payload)
+  },
+  clearSeasoningAction({ commit }) {
+    commit('clearSeasoning')
   },
   addSelectedIngredient({ commit }, { payload }) {
     commit('clearSelcted')
