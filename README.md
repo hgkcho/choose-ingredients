@@ -2,6 +2,10 @@
 
 > My sweet Nuxt.js project
 
+## netlify site
+
+https://app.netlify.com/sites/choose-ingredients/overview
+
 ## Build Setup
 
 ``` bash
