@@ -5,8 +5,8 @@
   "bodyHtml": "<h1>とりあえず書いてみた</h1>\n<h2>good</h2>\n<p>goood</p>\n",
   "preview": "とりあえず書いてみた\n\ngood\ngoood",
   "dir": "content/posts/json",
-  "base": "good.json",
+  "base": "2019-05-12-good.json",
   "ext": ".json",
-  "sourceBase": "good.md",
+  "sourceBase": "2019-05-12-good.md",
   "sourceExt": ".md"
 }

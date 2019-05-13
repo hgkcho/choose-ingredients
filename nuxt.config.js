@@ -65,8 +65,7 @@ export default {
   ],
   sitemap: {
     path: '/sitemap.xml',
-    hostname: 'https://jmblog.jp',
-    generate: true,
+    hostname: 'https://choose-ingredients.netlify.com',
     exclude: ['/404'],
     routes: generateDynamicRoutes
   },
