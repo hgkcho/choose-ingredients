@@ -201,28 +201,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-.ext {
-  background: #ffe0b2;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  -webkit-transition: all 0.3s;
-  transition: all 0.3s;
-  margin: 10px 0 0 0;
-  -webkit-transform: translateY(-5px);
-  -ms-transform: translateY(-5px);
-  transform: translateY(-5px);
-}
-.normal {
-  background: white;
-}
-.active {
-  color: aqua;
-}
-.elevation-12:hover {
-  background: #ffdead;
-  box-shadow: 0px 3px 5px -1px;
-}
-</style>
