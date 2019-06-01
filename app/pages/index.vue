@@ -2,13 +2,6 @@
   <v-layout row wrap>
     <v-container>
       <v-layout row wrap>
-        <!-- <v-flex
-          v-for="ingredient in selectedIngredients"
-          :key="ingredient.id"
-          xs12
-          mx-2
-          class="text-xs-center selectedIngredient mb-2"
-        > -->
         <v-flex>
           <v-card
             v-if="protein.id || vegetable.id || seasoning.id"
@@ -17,21 +10,18 @@
             <v-card-text>
               <span v-if="protein.id">
                 <v-chip outline color="red">
-                  <v-icon left>local_pizza</v-icon>
                   {{ protein.name }}
                   <v-icon right @click="removeProtein">close</v-icon>
                 </v-chip>
               </span>
               <span v-if="vegetable.id">
                 <v-chip outline color="red">
-                  <v-icon left>fastfood</v-icon>
                   {{ vegetable.name }}
                   <v-icon right @click="removeVegetable">close</v-icon>
                 </v-chip>
               </span>
               <span v-if="seasoning.id">
                 <v-chip outline color="red">
-                  <v-icon left>whatshot</v-icon>
                   {{ seasoning.name }}
                   <v-icon right @click="removeSeasoning">close</v-icon>
                 </v-chip>

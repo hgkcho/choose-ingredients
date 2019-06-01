@@ -1,13 +1,12 @@
 import VuetifyLoaderPlugin from 'vuetify-loader/lib/plugin'
-import { sourceFileArray } from './content/posts/json/summary.json'
+import postSummary from './content/posts/json/_summary.json'
+import ingredientSummary from './content/ingredients/json/_summary.json'
 import pkg from './package'
 
-import { sourceFileNameToUrl } from './sourceFileNameToUrl'
-
 const generateDynamicRoutes = callback => {
-  const routes = sourceFileArray.map(sourceFileName => {
-    return sourceFileNameToUrl(sourceFileName)
-  })
+  const postRoutes = postSummary.map(summary => summary.href)
+  const ingredientsRoutes = ingredientSummary.map(summary => summary.href)
+  const routes = postRoutes.concat(ingredientsRoutes)
   callback(null, routes)
 }
 
@@ -47,7 +46,11 @@ export default {
   /*
    ** Global CSS
    */
-  css: ['~/assets/style/app.styl'],
+  css: [
+    '~/assets/style/app.styl',
+    '~/assets/css/md-container.css',
+    '~/assets/css/tomorrow-night-bright.css'
+  ],
 
   /*
    ** Plugins to load before mounting the App
@@ -61,13 +64,35 @@ export default {
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
-    '@nuxtjs/sitemap'
+    '@nuxtjs/sitemap',
+    '@nuxtjs/markdownit'
   ],
   sitemap: {
     path: '/sitemap.xml',
     hostname: 'https://choose-ingredients.netlify.com',
     exclude: ['/404'],
     routes: generateDynamicRoutes
+  },
+
+  markdownit: {
+    preset: 'default',
+    linkify: false,
+    breaks: true,
+    html: true,
+    typegraphy: true,
+    injected: true,
+    xhtmlOut: true,
+    langPrefix: 'language-',
+    quotes: '“”‘’',
+    use: [
+      'markdown-it-meta',
+      'markdown-it-footnote',
+      'markdown-it-table-of-contents',
+      'markdown-it-anchor',
+      'markdown-it-abbr',
+      'markdown-it-emoji',
+      'markdown-it-container'
+    ]
   },
 
   /*
@@ -93,7 +118,7 @@ export default {
      */
     extend(config, ctx) {
       // Run ESLint on save
-      if (ctx.isDev && ctx.isClient) {
+      if (ctx.isDev && process.isClient) {
         config.module.rules.push({
           enforce: 'pre',
           test: /\.(js|vue)$/,

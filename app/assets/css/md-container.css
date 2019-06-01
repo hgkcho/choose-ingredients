@@ -1,0 +1,31 @@
+.success {
+  margin: 10px 0;
+  padding: 10px 10px;
+  border-radius: 5px;
+  color: #3a6f3a;
+  background-color: #daedd2;
+}
+
+.info {
+  margin: 10px 0;
+  padding: 10px 10px;
+  border-radius: 5px;
+  color: #2b6584;
+  background-color: #d3eaf6;
+}
+
+.warning {
+  margin: 10px 0;
+  padding: 10px 10px;
+  border-radius: 5px;
+  color: #af9c75;
+  background-color: #fcf7df;
+}
+
+.danger {
+  margin: 10px 0;
+  padding: 10px 10px;
+  border-radius: 5px;
+  color: #9f3b3a;
+  background-color: #f0d9d9;
+}

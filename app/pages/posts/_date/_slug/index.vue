@@ -1,21 +1,30 @@
 <template>
-  <div>
-    <h1>{{ title }}</h1>
-    <div class="post-meta">
-      <time>{{ params.date }}</time>
-    </div>
-    <div v-html="bodyHtml"></div>
-  </div>
+  <v-layout ma-2 row wrap justify-center>
+    <v-flex sm8>
+      <v-card>
+        <v-card-title primary-title>
+          <h1 class="headline mx-auto">{{ title }}</h1>
+        </v-card-title>
+        <v-card-text>
+          <div class="post-meta">
+            <time>{{ params.date }}</time>
+          </div>
+          <!-- eslint-disable vue/no-v-html -->
+          <div class="ma-2 markdown-body body-1" v-html="$md.render(body)" />
+          <!-- eslint-enable vue/no-v-html -->
+        </v-card-text>
+        <v-card-actions> </v-card-actions>
+      </v-card>
+    </v-flex>
+  </v-layout>
 </template>
 
 <script>
-import { sourceFileArray } from '../../../../../content/posts/json/summary.json'
-
 export default {
-  validate({ params }) {
-    return sourceFileArray.includes(
-      `content/posts/markdown/${params.date}-${params.slug}.md`
-    )
+  computed: {
+    compileMarkdown: function() {
+      return this.markdownIt.render(this.body)
+    }
   },
   asyncData({ params }) {
     return Object.assign(
@@ -25,30 +34,11 @@ export default {
       }.json`),
       { params }
     )
-  },
-  head() {
-    const title = `${this.title}`
-    const url = `https://choose-ingredients.netlify.com/posts/${
-      this.params.date
-    }/${this.params.slug}/`
-    return {
-      title: title,
-      meta: [
-        { hid: 'og:url', property: 'og:url', content: url },
-        { hid: 'og:title', property: 'og:title', content: title }
-      ],
-      link: [{ rel: 'canonical', href: url }]
-    }
   }
 }
 </script>
 
 <style scoped>
-.post-meta {
-  font-size: 0.8em;
-  color: #888;
-  margin-top: -1rem;
-  margin-bottom: 2.4rem;
-  text-align: right;
-}
+@import 'assets/css/tomorrow-night-bright.css';
+@import 'assets/css/md-container.css';
 </style>
