@@ -88,13 +88,13 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
-import AddItemButton from '~/components/index/AddItemButton'
+// import AddItemButton from '~/components/index/AddItemButton'
 
 export default {
   name: 'ItemCard',
-  components: {
-    AddItemButton
-  },
+  // components: {
+  //   AddItemButton
+  // },
   props: {
     title: {
       type: String,
