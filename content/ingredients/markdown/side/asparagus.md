@@ -1,6 +1,6 @@
 ---
 name: 'アスパラガス'
-catagory: 'vegetable'
+category: 'side'
 calory: 20
 main_nutritions: ['ビタミンA','ビタミンB1','ビタミンB2','ビタミンC','ビタミンE','葉酸','アスパラギン酸']
 ---

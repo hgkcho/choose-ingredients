@@ -1,6 +1,6 @@
 ---
-name: 
-catagory: 'vegetable'
+name: 'template'
+category: 'side'
 calory: 20
 main_nutritions: []
 ---
@@ -11,6 +11,12 @@ main_nutritions: []
 
 :::
 
+<br>
+
 ## 美味しさ
 
+<br>
+
 ## 選び方
+
+<br>

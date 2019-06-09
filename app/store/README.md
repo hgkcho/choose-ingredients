@@ -8,3 +8,11 @@ Vuex Store option is implemented in the Nuxt.js framework.
 Creating a file in this directory automatically activates the option in the framework.
 
 More information about the usage of this directory in [the documentation](https://nuxtjs.org/guide/vuex-store).
+
+## indexで管理するもの
+
+ingredients: 食材
+main: 主菜
+side: 副菜
+seasoning: 調味料
+selectedIngredient: 選択されている食座

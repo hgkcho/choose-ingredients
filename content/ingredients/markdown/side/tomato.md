@@ -1,6 +1,6 @@
 ---
 name: 'トマト'
-catagory: 'vegetable'
+category: 'side'
 calory: 20
 main_nutritions: ['ビタミンC']
 ---

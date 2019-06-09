@@ -19,6 +19,14 @@
           <!-- eslint-enable vue/no-v-html -->
         </v-card-text>
       </v-card>
+      <v-btn large class="light-green lighten-3"
+        ><nuxt-link
+          class="black--text"
+          style="text-decoration:none;"
+          to="/ingredients"
+          >戻る</nuxt-link
+        ></v-btn
+      >
     </v-flex>
   </v-layout>
 </template>

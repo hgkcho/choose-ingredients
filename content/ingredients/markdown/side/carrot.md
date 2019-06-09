@@ -1,6 +1,6 @@
 ---
 name: 'にんじん'
-catagory: 'vegetable'
+category: 'side'
 calory: 36
 main_nutritions: []
 ---
@@ -28,7 +28,7 @@ main_nutritions: []
 パントテン酸 (B5)	(7%) 0.33 mg
 ビタミンB6	(8%) 0.10 mg
 葉酸 (B9)	(6%) 23 μg
-ビタミンC	(7%) 6 mg
+**ビタミンC**	(7%) 6 mg
 ビタミンE	(3%) 0.5 mg
 ビタミンK	(17%) 18 μg
 ミネラル

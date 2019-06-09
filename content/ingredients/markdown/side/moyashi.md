@@ -1,6 +1,6 @@
 ---
 name: 'もやし'
-catagory: 'vegetable'
+category: 'side'
 calory: 30
 main_nutritions: []
 ---

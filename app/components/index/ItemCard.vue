@@ -6,13 +6,18 @@
       </v-card-title>
     </v-layout>
 
-    <v-layout v-if="isProtein()" row wrap align-center class="text-xs-center">
-      <v-flex v-for="ingredient in items" :key="ingredient.id" xs6 align-center>
+    <v-layout v-if="isMain()" row wrap align-center class="text-xs-center">
+      <v-flex
+        v-for="ingredient in main"
+        :key="ingredient.name"
+        xs6
+        align-center
+      >
         <v-hover>
           <v-card
-            :class="{ ext: protein.name === ingredient.name }"
+            :class="{ ext: main.name === ingredient.name }"
             class="mx-auto ma-2 text-xs-center"
-            @click="addProteinAction(ingredient)"
+            @click="toggleIngredient(ingredient)"
           >
             <v-card-text>
               {{ ingredient.name }}
@@ -22,9 +27,6 @@
                 <div>
                   <v-btn outline color="info" class="ma-3">詳しく見る</v-btn>
                 </div>
-                <!-- <div>
-                  <AddItemButton :category="category" :item="ingredient" />
-                </div> -->
               </v-layout>
             </v-card-actions>
           </v-card>
@@ -32,13 +34,18 @@
       </v-flex>
     </v-layout>
 
-    <v-layout v-if="isVegetable()" row wrap align-center class="text-xs-center">
-      <v-flex v-for="ingredient in items" :key="ingredient.id" xs6 align-center>
+    <v-layout v-if="isSide()" row wrap align-center class="text-xs-center">
+      <v-flex
+        v-for="ingredient in side"
+        :key="ingredient.name"
+        xs6
+        align-center
+      >
         <v-hover>
           <v-card
-            :class="{ ext: vegetable.name === ingredient.name }"
+            :class="{ ext: activeIngredient.side.name === ingredient.name }"
             class="mx-auto ma-2 text-xs-center"
-            @click="addVegetableAction(ingredient)"
+            @click="toggleIngredient(ingredient)"
           >
             <v-card-text>
               {{ ingredient.name }}
@@ -48,9 +55,6 @@
                 <div>
                   <v-btn outline color="info" class="ma-3">詳しく見る</v-btn>
                 </div>
-                <!-- <div>
-                  <AddItemButton :category="category" :item="ingredient" />
-                </div> -->
               </v-layout>
             </v-card-actions>
           </v-card>
@@ -59,12 +63,17 @@
     </v-layout>
 
     <v-layout v-if="isSeasoning()" row wrap align-center class="text-xs-center">
-      <v-flex v-for="ingredient in items" :key="ingredient.id" xs6 align-center>
+      <v-flex
+        v-for="ingredient in seasoning"
+        :key="ingredient.name"
+        xs6
+        align-center
+      >
         <v-hover>
           <v-card
             :class="{ ext: seasoning.name === ingredient.name }"
             class="mx-auto ma-2 text-xs-center"
-            @click="addSeasoningAction(ingredient)"
+            @click="toggleIngredient(ingredient)"
           >
             <v-card-text>
               {{ ingredient.name }}
@@ -74,9 +83,6 @@
                 <div>
                   <v-btn outline color="info" class="ma-3">詳しく見る</v-btn>
                 </div>
-                <!-- <div>
-                  <AddItemButton :category="category" :item="ingredient" />
-                </div> -->
               </v-layout>
             </v-card-actions>
           </v-card>
@@ -88,13 +94,9 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
-// import AddItemButton from '~/components/index/AddItemButton'
 
 export default {
   name: 'ItemCard',
-  // components: {
-  //   AddItemButton
-  // },
   props: {
     title: {
       type: String,
@@ -104,100 +106,74 @@ export default {
     category: {
       type: String,
       required: true
-    },
-    items: {
-      type: Object,
-      required: false,
-      default: () => ['naef', 'f']
+    }
+  },
+  data() {
+    return {
+      activeIngredient: {
+        main: '',
+        side: '',
+        seasoning: ''
+      }
     }
   },
   computed: {
     ...mapGetters([
-      'protein',
-      'vegetable',
+      'main',
+      'side',
       'seasoning',
       'ingredients',
       'selectedIngredient'
     ])
   },
-  asyncData() {
-    return {
-      activeIngredient: {
-        protein: '',
-        vegetable: '',
-        seasoning: ''
-      }
-    }
-  },
   methods: {
     hasSelectedIngredients() {
       return this.selectedIngredient !== []
     },
-    // /**
-    //  * vuexに保存する
-    //  */
-    // // addingredient(ingredient) {
-    // //   const payload = {
-    // //     id: ingredient.id,
-    // //     name: ingredient.name
-    // //   }
-    // //   this.addselectedingredient({ payload })
-    // // },
     /**
-     * todo
-     * 途中
-     * 切り替え
+     * activeなingredientを切り替える
+     *
+     * @param {Array} ingredient
      */
-    toggleIngredient(ingredient, ingredientType) {
-      if (ingredientType === 'protein') {
-        if (this.activeIngredient[ingredientType] === '') {
-          this.addProteinAction(ingredient)
-          this.activeIngredient[ingredientType] = ingredient
+    toggleIngredient(ingredient) {
+      if (ingredient.category === 'main') {
+        if (this.activeIngredient.main === ingredient) {
+          this.activeIngredient.main = ''
+          this.clearActiveByTypeAction(ingredient)
         } else {
-          this.clearProteinAction()
-          this.activeIngredient[ingredient] = ''
+          this.activeIngredient.main = ingredient
+          this.addActiveByTypeAction(ingredient)
         }
       }
-      if (ingredientType === 'vegetable') {
-        if (this.activeIngredient[ingredientType] === '') {
-          this.addVegetableAction(ingredient)
-          this.activeIngredient[ingredientType] = ingredient
+      if (ingredient.category === 'side') {
+        if (this.activeIngredient.side === ingredient) {
+          this.activeIngredient.side = ''
+          this.clearActiveByTypeAction(ingredient)
         } else {
-          this.clearVegetableAction()
-          this.activeIngredient[ingredient] = ''
+          this.activeIngredient.side = ingredient
+          this.addActiveByTypeAction(ingredient)
         }
       }
-      if (ingredientType === 'seasoning') {
-        if (this.activeIngredient[ingredientType] === '') {
-          this.addSeasoningAction(ingredient)
-          this.activeIngredient[ingredientType] = ingredient
+      if (ingredient.category === 'seasoning') {
+        if (this.activeIngredient.seasoning === ingredient) {
+          this.activeIngredient.seasoning = ''
+          this.clearActiveByTypeAction(ingredient)
         } else {
-          this.clearSeasoningAction()
-          this.activeIngredient[ingredient] = ''
+          this.activeIngredient.seasoning = ingredient
+          this.addActiveByTypeAction(ingredient)
         }
       }
     },
-    isProtein() {
-      return this.category === 'protein'
+    isMain() {
+      return this.category === 'main'
     },
-    isVegetable() {
-      return this.category === 'vegetable'
+    isSide() {
+      return this.category === 'side'
     },
     isSeasoning() {
       return this.category === 'seasoning'
     },
-    deactivateIngredient(ingredientType) {
-      this.activeIngredient[ingredientType] = ''
-    },
-    ...mapActions([
-      'addProteinAction',
-      'addVegetableAction',
-      'addSeasoningAction',
-      'addSelectedIngredient',
-      'clearProteinAction',
-      'claerVegetableAction',
-      'clearSeasoningAction'
-    ])
+    ...mapActions(['addActiveByTypeAction', 'clearActiveByTypeAction'])
   }
 }
 </script>

@@ -1,11 +1,15 @@
 ---
-name: '玉ねぎ'
+name: 'かぶ'
 category: 'side'
 calory: 20
-main_nutritions: ['ビタミンA']
+main_nutritions: []
 ---
 
 ## 栄養
+
+::: spoiler 詳細
+
+:::
 
 ## 美味しさ
 

@@ -1,6 +1,6 @@
 ---
 name: 'きゅうり'
-catagory: 'vegetable'
+category: 'side'
 calory: 13
 main_nutritions: ['ビタミンK']
 ---

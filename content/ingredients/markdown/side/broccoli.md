@@ -1,6 +1,6 @@
 ---
 name: 'ブロッコリー'
-category: 'vegetable'
+category: 'side'
 calory: 33
 main_nutritions: ['ビタミンK', 'ビタミンC']
 

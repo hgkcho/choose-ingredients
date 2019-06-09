@@ -1,101 +1,105 @@
-import jsonData from '~/assets/json/ingredients.json'
+import ingredientData from '~/../content/ingredients/json/_summary.json'
 
+/**
+ * state
+ */
 export const state = () => ({
-  protein: {},
-  vegetable: {},
-  seasoning: {},
-  selectedIngredient: [],
-  ingredients: jsonData
+  ingredients: devideIngredients(),
+  main: devideIngredients().main,
+  side: devideIngredients().side,
+  seasoning: devideIngredients().seasoning,
+  activeIngredients: { main: null, side: null, seasoning: null }
 })
 
+/**
+ * getter
+ */
 export const getters = {
   ingredients: state => state.ingredients,
-  protein: state => state.protein,
-  vegetable: state => state.vegetable,
+  main: state => state.main,
+  side: state => state.side,
   seasoning: state => state.seasoning,
-  selectedIngredient: state => state.selectedIngredient
+  activeIngredients: state => state.activeIngredients
 }
 
+/**
+ * mutation
+ */
 export const mutations = {
-  addProtein(state, payload) {
-    state.protein.id = payload.id
-    state.protein.name = payload.name
+  addActiveByType(state, payload) {
+    if (payload.category === 'main') {
+      state.activeIngredients.main = payload
+    }
+    if (payload.category === 'side') {
+      state.activeIngredients.side = payload
+    }
+    if (payload.category === 'seasoning') {
+      state.activeIngredients.seasoning = payload
+    }
   },
-  clearProtein(state) {
-    state.protein = {}
-  },
-  addVegetable(state, payload) {
-    state.vegetable.id = payload.id
-    state.vegetable.name = payload.name
-  },
-  clearVegetable(state) {
-    state.vegetable = {}
-  },
-  addSeasoning(state, payload) {
-    state.seasoning.id = payload.id
-    state.seasoning.name = payload.name
-  },
-  clearSeasoning(state) {
-    state.seasoning = {}
-  },
-
-  addIngredient(state, { ingredient }) {
-    state.ingredients.push(ingredient)
-  },
-  clearIngredients(state) {
-    state.ingredients = []
-  },
-  addSelected(state, { payload }) {
-    state.selectedIngredient.push({
-      id: payload.id,
-      name: payload.name
-    })
-  },
-  clearSelcted(state) {
-    state.selectedIngredient = []
+  clearActiveByType(state, payload) {
+    if (payload.category === 'main') {
+      state.activeIngredients.main = ''
+    }
+    if (payload.category === 'side') {
+      state.activeIngredients.side = ''
+    }
+    if (payload.category === 'seasoning') {
+      state.activeIngredients.seasoning = ''
+    }
   }
 }
 
+/**
+ * action
+ */
 export const actions = {
-  addProteinAction({ commit }, payload) {
-    commit('clearProtein')
-    commit('addProtein', payload)
+  clearActiveByTypeAction({ commit }, { ingredient }) {
+    commit('clearActiveByType', ingredient)
   },
-  clearProteinAction({ commit }) {
-    commit('clearProtein')
-  },
-  addVegetableAction({ commit }, payload) {
-    commit('clearVegetable')
-    commit('addVegetable', payload)
-  },
-  clearVegetableAction({ commit }) {
-    commit('clearVegetable')
-  },
-  addSeasoningAction({ commit }, payload) {
-    commit('clearSeasoning')
-    commit('addSeasoning', payload)
-  },
-  clearSeasoningAction({ commit }) {
-    commit('clearSeasoning')
-  },
-  addSelectedIngredient({ commit }, { payload }) {
-    commit('clearSelcted')
-    commit('addSelected', { payload })
-  },
-  async fetchIngredients({ commit }) {
-    const ingredients = await this.$axios.$get(
-      'https://api.myjson.com/bins/zh3ac'
-    )
-    commit(`clearIngredients`)
-    Object.entries(ingredients || [])
-      .reverse()
-      .forEach(([id, content]) =>
-        commit('addIngredient', {
-          ingredient: {
-            id,
-            ...content
-          }
-        })
-      )
+  addActiveByTypeAction({ commit }, ingredient) {
+    commit('clearActiveByType', { ingredient })
+    commit('addActiveByType', ingredient)
   }
+}
+
+/**
+ * ingredientDataをcategoryによって分類する関数
+ */
+export function devideIngredients() {
+  const mainIngredients = []
+  const sideIngredients = []
+  const seasoningIngredients = []
+  ingredientData.forEach(element => {
+    if (element.category === 'main') {
+      mainIngredients.push(element)
+    }
+    if (element.category === 'side') {
+      sideIngredients.push(element)
+    }
+    if (element.category === 'seasoning') {
+      seasoningIngredients.push(element)
+    }
+  })
+  return {
+    main: choose6Randomly(mainIngredients),
+    side: choose6Randomly(sideIngredients),
+    seasoning: choose6Randomly(seasoningIngredients)
+  }
+}
+
+/**
+ * ingredientを６個の要素に絞る
+ *
+ * @param {Array} ingredients
+ * @returns {Array} sixIngredients
+ */
+export function choose6Randomly(ingredients) {
+  const retArray = []
+  while (retArray.length < 6 && ingredients.length > 0) {
+    const rand = Math.floor(Math.random() * ingredients.length)
+    retArray.push(ingredients[rand])
+    ingredients.splice(rand, 1)
+  }
+  return retArray
 }

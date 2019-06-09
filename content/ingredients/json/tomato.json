@@ -1,6 +1,7 @@
 {
   "createdAt": "",
   "name": "トマト",
+  "category": "side",
   "calory": 20,
   "main_nutritions": [
     "ビタミンC"
