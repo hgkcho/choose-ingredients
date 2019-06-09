@@ -37,7 +37,9 @@ export default {
     return Object.assign(
       {},
       require(`../../../../content/ingredients/json/${params.slug}.json`),
-      { params }
+      {
+        params
+      }
     )
   }
 }
