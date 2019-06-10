@@ -4,7 +4,7 @@ const mkdirp = require('mkdirp').sync
 const { md } = require('./markdown-it')
 const { sourceFileNameToUrl, convertDateFormat } = require('./utils')
 
-const createData = (mdFiles, exportDir, targetApp) => {
+const createData = (mdFiles, exportDir, targetApp, targetCategory) => {
   const result = []
 
   mdFiles.forEach(mdPath => {
@@ -16,7 +16,8 @@ const createData = (mdFiles, exportDir, targetApp) => {
 
     meta.href = sourceFileNameToUrl(
       mdPath.replace(process.cwd(), ''),
-      targetApp
+      targetApp,
+      targetCategory
     )
 
     const parse = path.parse(mdPath)
@@ -70,14 +71,24 @@ const exportFileMap = (articles, fileMapFilePath) => {
   fs.writeFileSync(fileMapFilePath, JSON.stringify(fileMap))
 }
 
+/**
+ * 本体
+ * @param {*} mdFiles
+ * @param {*} exportDir
+ * @param {*} summaryFilePath
+ * @param {*} fileMapFilePath
+ * @param {*} targetApp
+ * @param {*} targetCategory
+ */
 const convertArticle = (
   mdFiles,
   exportDir,
   summaryFilePath,
   fileMapFilePath,
-  targetApp
+  targetApp,
+  targetCategory
 ) => {
-  const articles = createData(mdFiles, exportDir, targetApp)
+  const articles = createData(mdFiles, exportDir, targetApp, targetCategory)
 
   mkdirp(exportDir)
 

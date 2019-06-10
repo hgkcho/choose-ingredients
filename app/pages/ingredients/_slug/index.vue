@@ -13,20 +13,14 @@
             </span>
           </div>
         </v-layout>
+        <!-- {{ router.go(-1) }} -->
         <v-card-text>
           <!-- eslint-disable vue/no-v-html -->
           <div class="ma-2 markdown-body body-1" v-html="$md.render(body)" />
           <!-- eslint-enable vue/no-v-html -->
         </v-card-text>
       </v-card>
-      <v-btn large class="light-green lighten-3"
-        ><nuxt-link
-          class="black--text"
-          style="text-decoration:none;"
-          to="/ingredients"
-          >戻る</nuxt-link
-        ></v-btn
-      >
+      <v-btn color="success" @click="backPage">戻る</v-btn>
     </v-flex>
   </v-layout>
 </template>
@@ -41,6 +35,11 @@ export default {
         params
       }
     )
+  },
+  methods: {
+    backPage() {
+      window.history.back()
+    }
   }
 }
 </script>

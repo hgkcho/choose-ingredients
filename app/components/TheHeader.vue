@@ -1,6 +1,6 @@
 <template>
   <div grid-list-xs>
-    <v-navigation-drawer v-model="drawer" fixed clipped app>
+    <v-navigation-drawer v-model="drawer" clipped app>
       <v-list dense>
         <v-list-tile
           avatar
@@ -60,7 +60,8 @@ export default {
     drawer: null,
     items: [
       { icon: 'home', title: 'home', text: 'home', href: '/' },
-      { icon: 'library_books', text: 'blog', href: '/posts/' }
+      { icon: 'library_books', text: 'blog', href: '/posts/' },
+      { icon: 'local_dining', text: 'ingredient', href: '/ingredients/' }
     ]
   })
 }

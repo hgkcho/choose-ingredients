@@ -15,7 +15,7 @@
       >
         <v-hover>
           <v-card
-            :class="{ ext: main.name === ingredient.name }"
+            :class="{ ext: isActiveIngredient(ingredient) }"
             class="mx-auto ma-2 text-xs-center"
             @click="toggleIngredient(ingredient)"
           >
@@ -24,8 +24,14 @@
             </v-card-text>
             <v-card-actions justify-center align-center class="text-xs-center">
               <v-layout column class="text-xs-center">
-                <div>
-                  <v-btn outline color="info" class="ma-3">詳しく見る</v-btn>
+                <div class="d-block">
+                  <v-btn
+                    outline
+                    color="info"
+                    class="ma-3"
+                    @click="detail(ingredient)"
+                    >詳しく見る</v-btn
+                  >
                 </div>
               </v-layout>
             </v-card-actions>
@@ -43,7 +49,7 @@
       >
         <v-hover>
           <v-card
-            :class="{ ext: activeIngredient.side.name === ingredient.name }"
+            :class="{ ext: isActiveIngredient(ingredient) }"
             class="mx-auto ma-2 text-xs-center"
             @click="toggleIngredient(ingredient)"
           >
@@ -52,8 +58,15 @@
             </v-card-text>
             <v-card-actions justify-center align-center class="text-xs-center">
               <v-layout column class="text-xs-center">
-                <div>
-                  <v-btn outline color="info" class="ma-3">詳しく見る</v-btn>
+                <div class="d-block">
+                  <v-btn
+                    outline
+                    color="info"
+                    class="d-block ma-3"
+                    elevation-12
+                    @click="detail(ingredient)"
+                    >詳しく見る</v-btn
+                  >
                 </div>
               </v-layout>
             </v-card-actions>
@@ -71,7 +84,7 @@
       >
         <v-hover>
           <v-card
-            :class="{ ext: seasoning.name === ingredient.name }"
+            :class="{ ext: isActiveIngredient(ingredient) }"
             class="mx-auto ma-2 text-xs-center"
             @click="toggleIngredient(ingredient)"
           >
@@ -80,8 +93,14 @@
             </v-card-text>
             <v-card-actions justify-center align-center class="text-xs-center">
               <v-layout column class="text-xs-center">
-                <div>
-                  <v-btn outline color="info" class="ma-3">詳しく見る</v-btn>
+                <div class="d-block">
+                  <v-btn
+                    outline
+                    color="info"
+                    class="ma-3"
+                    @click="detail(ingredient)"
+                    >詳しく見る</v-btn
+                  >
                 </div>
               </v-layout>
             </v-card-actions>
@@ -108,58 +127,66 @@ export default {
       required: true
     }
   },
-  data() {
-    return {
-      activeIngredient: {
-        main: '',
-        side: '',
-        seasoning: ''
-      }
-    }
-  },
+  // data() {
+  //   return {
+  //     activeIngredient: {
+  //       main: '',
+  //       side: '',
+  //       seasoning: ''
+  //     }
+  //   }
+  // },
   computed: {
     ...mapGetters([
       'main',
       'side',
       'seasoning',
       'ingredients',
-      'selectedIngredient'
+      'activeIngredients'
     ])
   },
   methods: {
-    hasSelectedIngredients() {
-      return this.selectedIngredient !== []
+    detail(ingredient) {
+      this.$router.push(ingredient.href)
+    },
+    /**
+     * 当該のingredientがアクティブかどうか
+     * @param {Object} ingredient
+     * @returns {boolean}
+     */
+    isActiveIngredient(ingredient) {
+      const main = this.activeIngredients.main === ingredient
+      const side = this.activeIngredients.side === ingredient
+      const seasoning = this.activeIngredients.seasoning === ingredient
+      if (main || side || seasoning) {
+        return true
+      } else {
+        return false
+      }
     },
     /**
      * activeなingredientを切り替える
-     *
      * @param {Array} ingredient
      */
     toggleIngredient(ingredient) {
       if (ingredient.category === 'main') {
-        if (this.activeIngredient.main === ingredient) {
-          this.activeIngredient.main = ''
-          this.clearActiveByTypeAction(ingredient)
+        if (this.activeIngredients.main === ingredient) {
+          this.clearActiveByTypeAction('main')
         } else {
-          this.activeIngredient.main = ingredient
           this.addActiveByTypeAction(ingredient)
         }
       }
       if (ingredient.category === 'side') {
-        if (this.activeIngredient.side === ingredient) {
-          this.activeIngredient.side = ''
-          this.clearActiveByTypeAction(ingredient)
+        if (this.activeIngredients.side === ingredient) {
+          this.clearActiveByTypeAction('side')
         } else {
-          this.activeIngredient.side = ingredient
           this.addActiveByTypeAction(ingredient)
         }
       }
       if (ingredient.category === 'seasoning') {
-        if (this.activeIngredient.seasoning === ingredient) {
-          this.activeIngredient.seasoning = ''
-          this.clearActiveByTypeAction(ingredient)
+        if (this.activeIngredients.seasoning === ingredient) {
+          this.clearActiveByTypeAction('seasoning')
         } else {
-          this.activeIngredient.seasoning = ingredient
           this.addActiveByTypeAction(ingredient)
         }
       }

@@ -16,3 +16,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+#inspire {
+  background: #5c5e68;
+}
+</style>

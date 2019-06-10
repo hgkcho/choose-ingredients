@@ -14,10 +14,10 @@ updated_at: "2019-02-16 00:00:00"
 ---
 ```
 
-## processmd command example
+## markdownからjsonファイルを生成する
 
 ```
-processmd \"contents/markdown/**/*.md\" --preview 160 --stdout --outputDir contents/json > contents/summary.json
+node index.js -p {directory}
 ```
 
 ## reference

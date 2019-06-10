@@ -10,10 +10,16 @@ const optionDefinitions = [
     name: 'path',
     alias: 'p',
     type: String
+  },
+  {
+    name: 'category',
+    alias: 'c',
+    type: String
   }
 ]
 const options = commandLineArgs(optionDefinitions)
 const targetApp = options.path
+const targetCategory = options.category
 
 const { convertArticle } = require('./convertArticle')
 
@@ -24,9 +30,16 @@ const baseSrcDir = path.resolve(process.cwd() + '/' + targetApp)
 const globPath = path.resolve(baseSrcDir, 'markdown/**/**.md')
 
 const mdFiles = glob.sync(globPath)
-const exportDir = path.resolve(baseSrcDir, 'json')
+const exportDir = path.resolve(baseSrcDir, 'json', targetCategory)
 const summaryFilePath = path.resolve(baseSrcDir, 'json', '_summary.json')
 const fileMapFilePath = path.resolve(baseSrcDir, 'json', '_filemap.json')
 
 rimraf.sync(exportDir)
-convertArticle(mdFiles, exportDir, summaryFilePath, fileMapFilePath, targetApp)
+convertArticle(
+  mdFiles,
+  exportDir,
+  summaryFilePath,
+  fileMapFilePath,
+  targetApp,
+  targetCategory
+)

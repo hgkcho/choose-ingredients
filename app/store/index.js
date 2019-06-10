@@ -38,14 +38,14 @@ export const mutations = {
     }
   },
   clearActiveByType(state, payload) {
-    if (payload.category === 'main') {
-      state.activeIngredients.main = ''
+    if (payload === 'main') {
+      state.activeIngredients.main = null
     }
-    if (payload.category === 'side') {
-      state.activeIngredients.side = ''
+    if (payload === 'side') {
+      state.activeIngredients.side = null
     }
-    if (payload.category === 'seasoning') {
-      state.activeIngredients.seasoning = ''
+    if (payload === 'seasoning') {
+      state.activeIngredients.seasoning = null
     }
   }
 }
@@ -54,11 +54,11 @@ export const mutations = {
  * action
  */
 export const actions = {
-  clearActiveByTypeAction({ commit }, { ingredient }) {
-    commit('clearActiveByType', ingredient)
+  clearActiveByTypeAction({ commit }, category) {
+    commit('clearActiveByType', category)
   },
   addActiveByTypeAction({ commit }, ingredient) {
-    commit('clearActiveByType', { ingredient })
+    commit('clearActiveByType', ingredient.category)
     commit('addActiveByType', ingredient)
   }
 }
@@ -71,6 +71,9 @@ export function devideIngredients() {
   const sideIngredients = []
   const seasoningIngredients = []
   ingredientData.forEach(element => {
+    if (element.name === '' || element.name === 'template') {
+      return
+    }
     if (element.category === 'main') {
       mainIngredients.push(element)
     }

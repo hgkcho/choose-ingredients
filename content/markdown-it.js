@@ -34,6 +34,7 @@ md.set({
       }
     }
   })
+  .use(container, 'info')
   .use(container, 'succsess')
   .use(container, 'warning')
   .use(container, 'danger')
