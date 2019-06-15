@@ -2,25 +2,38 @@
   <v-container>
     <v-layout row wrap>
       <v-flex sm8>
-        <v-card>
+        <v-card class="mb-2" justify-center>
           <v-card-title primary-title>
-            <h2 class="mx-auto">side</h2>
+            <v-btn
+              color="red lighten-5"
+              class="mx-auto"
+              @click="$router.push('/ingredients/main')"
+            >
+              主菜
+            </v-btn>
           </v-card-title>
-          <v-card-text>
-            <v-list dense>
-              <template v-for="(item, idx) in vegetableIngredients">
-                <v-list-tile :key="item.name" @click="detail(item)">
-                  <v-list-tile-content>
-                    {{ item.name }}
-                  </v-list-tile-content>
-                </v-list-tile>
-                <v-divider
-                  v-if="idx + 1 < vegetableIngredients.length"
-                  :key="idx"
-                ></v-divider>
-              </template>
-            </v-list>
-          </v-card-text>
+        </v-card>
+        <v-card class="mb-2">
+          <v-card-title primary-title>
+            <v-btn
+              color="red lighten-5"
+              class="mx-auto"
+              @click="$router.push('/ingredients/side')"
+            >
+              副菜
+            </v-btn>
+          </v-card-title>
+        </v-card>
+        <v-card class="mb-2">
+          <v-card-title primary-title>
+            <v-btn
+              color="red lighten-5"
+              class="mx-auto"
+              @click="$router.push('/ingredients/seasoning')"
+            >
+              調味料
+            </v-btn>
+          </v-card-title>
         </v-card>
       </v-flex>
     </v-layout>

@@ -13,6 +13,19 @@ const sourceFileNameToUrl = (filePath, targetApp) => {
 }
 
 /**
+ * ingredientのmdファイルからURLを生成する
+ *
+ * @param {*} filePath
+ * @param {*} targetApp
+ * @param {*} targetCategory
+ */
+const extractHref = (filePath, targetApp, targetCategory) => {
+  const deleteExt = filePath.replace('.md', '')
+  const fileName = deleteExt.split('/')[deleteExt.split('/').length - 1]
+  return `/${targetApp}/${targetCategory}/${fileName}`
+}
+
+/**
  * Convert string date format value to YYYY/MM/DD
  * @param dateString 2018-05-21T00:00:00.000Z
  * @returns {string}
@@ -28,5 +41,6 @@ const convertDateFormat = dateString => {
 
 module.exports = {
   sourceFileNameToUrl,
-  convertDateFormat
+  convertDateFormat,
+  extractHref
 }

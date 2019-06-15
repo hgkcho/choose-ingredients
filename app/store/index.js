@@ -4,7 +4,7 @@ import ingredientData from '~/../content/ingredients/json/_summary.json'
  * state
  */
 export const state = () => ({
-  ingredients: devideIngredients(),
+  ingredients: devideIngredients().all,
   main: devideIngredients().main,
   side: devideIngredients().side,
   seasoning: devideIngredients().seasoning,
@@ -67,6 +67,7 @@ export const actions = {
  * ingredientDataをcategoryによって分類する関数
  */
 export function devideIngredients() {
+  const allIngredients = []
   const mainIngredients = []
   const sideIngredients = []
   const seasoningIngredients = []
@@ -74,6 +75,7 @@ export function devideIngredients() {
     if (element.name === '' || element.name === 'template') {
       return
     }
+    allIngredients.push(element)
     if (element.category === 'main') {
       mainIngredients.push(element)
     }
@@ -85,6 +87,7 @@ export function devideIngredients() {
     }
   })
   return {
+    all: allIngredients,
     main: choose6Randomly(mainIngredients),
     side: choose6Randomly(sideIngredients),
     seasoning: choose6Randomly(seasoningIngredients)

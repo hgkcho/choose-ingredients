@@ -2,7 +2,7 @@ const fs = require('fs')
 const path = require('path')
 const mkdirp = require('mkdirp').sync
 const { md } = require('./markdown-it')
-const { sourceFileNameToUrl, convertDateFormat } = require('./utils')
+const { extractHref, convertDateFormat } = require('./utils')
 
 const createData = (mdFiles, exportDir, targetApp, targetCategory) => {
   const result = []
@@ -14,7 +14,7 @@ const createData = (mdFiles, exportDir, targetApp, targetCategory) => {
     meta.createdAt = meta.createdAt ? convertDateFormat(meta.created_at) : ''
     delete meta.created_at
 
-    meta.href = sourceFileNameToUrl(
+    meta.href = extractHref(
       mdPath.replace(process.cwd(), ''),
       targetApp,
       targetCategory
