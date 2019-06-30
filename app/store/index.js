@@ -88,10 +88,26 @@ export function devideIngredients() {
   })
   return {
     all: allIngredients,
-    main: choose6Randomly(mainIngredients),
-    side: choose6Randomly(sideIngredients),
-    seasoning: choose6Randomly(seasoningIngredients)
+    main: choose3Randomly(mainIngredients),
+    side: choose3Randomly(sideIngredients),
+    seasoning: choose3Randomly(seasoningIngredients)
   }
+}
+
+/**
+ * ingredientを3個の要素に絞る
+ *
+ * @param {Array} ingredients
+ * @returns {Array} Ingredients
+ */
+export function choose3Randomly(ingredients) {
+  const retArray = []
+  while (retArray.length < 3 && ingredients.length > 0) {
+    const rand = Math.floor(Math.random() * ingredients.length)
+    retArray.push(ingredients[rand])
+    ingredients.splice(rand, 1)
+  }
+  return retArray
 }
 
 /**

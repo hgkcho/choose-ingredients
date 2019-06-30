@@ -6,13 +6,8 @@
       </v-card-title>
     </v-layout>
 
-    <v-layout v-if="isMain()" row wrap align-center class="text-xs-center">
-      <v-flex
-        v-for="ingredient in main"
-        :key="ingredient.name"
-        xs6
-        align-center
-      >
+    <v-layout v-if="isMain()" row wrap justify-center class="text-xs-center">
+      <v-flex v-for="ingredient in main" :key="ingredient.name" xs8>
         <v-hover>
           <v-card
             :class="{ ext: isActiveIngredient(ingredient) }"
@@ -40,17 +35,12 @@
       </v-flex>
     </v-layout>
 
-    <v-layout v-if="isSide()" row wrap align-center class="text-xs-center">
-      <v-flex
-        v-for="ingredient in side"
-        :key="ingredient.name"
-        xs6
-        align-center
-      >
+    <v-layout v-if="isSide()" row wrap justify-center class="text-xs-center">
+      <v-flex v-for="ingredient in side" :key="ingredient.name" xs8>
         <v-hover>
           <v-card
             :class="{ ext: isActiveIngredient(ingredient) }"
-            class="mx-auto ma-2 text-xs-center"
+            class="my-2 text-xs-center"
             @click="toggleIngredient(ingredient)"
           >
             <v-card-text>
@@ -58,7 +48,7 @@
             </v-card-text>
             <v-card-actions justify-center align-center class="text-xs-center">
               <v-layout column class="text-xs-center">
-                <div class="d-block">
+                <div class="d-block mx-auto">
                   <v-btn
                     outline
                     color="info"
@@ -75,14 +65,15 @@
       </v-flex>
     </v-layout>
 
-    <v-layout v-if="isSeasoning()" row wrap align-center class="text-xs-center">
-      <v-flex
-        v-for="ingredient in seasoning"
-        :key="ingredient.name"
-        xs6
-        align-center
-      >
-        <v-hover>
+    <v-layout
+      v-if="isSeasoning()"
+      row
+      wrap
+      justify-center
+      class="text-xs-center"
+    >
+      <v-flex v-for="ingredient in seasoning" :key="ingredient.name" xs8 row>
+        <v-hover row class="mx-auto">
           <v-card
             :class="{ ext: isActiveIngredient(ingredient) }"
             class="mx-auto ma-2 text-xs-center"
@@ -127,15 +118,6 @@ export default {
       required: true
     }
   },
-  // data() {
-  //   return {
-  //     activeIngredient: {
-  //       main: '',
-  //       side: '',
-  //       seasoning: ''
-  //     }
-  //   }
-  // },
   computed: {
     ...mapGetters([
       'main',
