@@ -17,7 +17,13 @@ updated_at: "2019-02-16 00:00:00"
 ## markdownからjsonファイルを生成する
 
 ```
-node index.js -p {directory}
+node index.js -p {directory} -c {category}
+
+```
+
+example
+```
+node index.js -p ingredients -c main
 ```
 
 ## reference
