@@ -21,7 +21,9 @@
             <!-- eslint-enable vue/no-v-html -->
           </v-card-text>
         </v-card>
-        <v-btn color="success" @click="backPage">戻る</v-btn>
+        <v-btn round fixed bottom="16px" color="success" @click="backPage"
+          >戻る</v-btn
+        >
       </v-flex>
     </v-layout>
   </v-container>

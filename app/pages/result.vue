@@ -1,21 +1,30 @@
 <template>
   <v-layout row wrap justify-center>
-    <v-flex xs8>
+    <v-container grid-list-xs>
       <v-list two-line text-xs-center>
-        <h1 class="text-center">本日の食材</h1>
-        <v-divider mb-5></v-divider>
+        <v-layout row wrap ma-3>
+          <h1 class="mx-auto">本日の食材</h1>
+        </v-layout>
         <v-layout
           v-for="ingredient in activeIngredients"
           :key="ingredient.name"
           row
           wrap
-          mb-2
+          ma-2
         >
           <h2 class="mx-auto">{{ ingredient.name }}</h2>
         </v-layout>
       </v-list>
-      <v-btn color="info" @click="backPage">戻る</v-btn>
-    </v-flex>
+      <v-btn
+        fixed
+        round
+        bottom="16px"
+        color="info"
+        class="backButton"
+        @click="backPage"
+        >戻る</v-btn
+      >
+    </v-container>
   </v-layout>
 </template>
 
