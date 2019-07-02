@@ -1,0 +1,11 @@
+{
+  "createdAt": "",
+  "name": "レタス",
+  "category": "side",
+  "calory": 20,
+  "main_nutritions": [
+    "ビタミンA"
+  ],
+  "body": "<h2>栄養</h2>\n<h2>美味しさ</h2>\n<h2>選び方</h2>\n",
+  "href": "/ingredients/seasoning/lettuce"
+}

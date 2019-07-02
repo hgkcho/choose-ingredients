@@ -88,7 +88,6 @@ export default {
       'markdown-it-meta',
       'markdown-it-footnote',
       'markdown-it-table-of-contents',
-      'markdown-it-anchor',
       'markdown-it-abbr',
       'markdown-it-emoji',
       'markdown-it-container'

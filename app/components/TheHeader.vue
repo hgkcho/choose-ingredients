@@ -1,21 +1,13 @@
 <template>
   <div grid-list-xs>
     <v-navigation-drawer v-model="drawer" clipped app>
+      <v-layout row wrap>
+        <v-btn fab small color="info" @click.stop="drawer = !drawer">
+          <v-icon>menu</v-icon>
+        </v-btn>
+      </v-layout>
+
       <v-list dense>
-        <v-list-tile
-          avatar
-          style="cursor:pointer;"
-          @click.stop="drawer = !drawer"
-        >
-          <v-list-tile-action>
-            <v-icon>dehaze</v-icon>
-          </v-list-tile-action>
-          <v-list-tile-content>
-            <v-list-tile-title class="font-weight-bold"
-              >close</v-list-tile-title
-            >
-          </v-list-tile-content>
-        </v-list-tile>
         <v-list-tile
           v-for="item in items"
           :key="item.text"
@@ -32,15 +24,19 @@
         </v-list-tile>
       </v-list>
     </v-navigation-drawer>
+
     <v-toolbar
       hidden-sm-and-up
       color="blue lighten-4"
       dense
-      fixed
       clipped-left
       app
+      height="65px"
     >
-      <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
+      <v-btn fab small color="info" @click.stop="drawer = !drawer">
+        <v-icon>menu</v-icon>
+      </v-btn>
+      <!-- <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon> -->
       <v-toolbar-title
         justify-center
         align-center

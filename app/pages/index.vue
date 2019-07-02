@@ -2,6 +2,9 @@
   <v-layout row wrap>
     <v-container>
       <!-- アクティブなingredientを管理 -->
+      <v-alert v-model="isAlert" type="error" dismissible
+        >アイテムがそれぞれ１つずつ選択されていません</v-alert
+      >
       <v-layout row wrap>
         <v-flex>
           <v-card
@@ -10,19 +13,19 @@
           >
             <v-card-text>
               <span v-if="isMainActive">
-                <v-chip outline color="red">
+                <v-chip small outline color="red">
                   {{ activeIngredients.main.name }}
                   <v-icon right @click="removeMain">close</v-icon>
                 </v-chip>
               </span>
               <span v-if="isSideActive">
-                <v-chip outline color="red">
+                <v-chip small outline color="red">
                   {{ activeIngredients.side.name }}
                   <v-icon right @click="removeSide">close</v-icon>
                 </v-chip>
               </span>
               <span v-if="isSeasoningActive">
-                <v-chip outline color="red">
+                <v-chip small outline color="red">
                   {{ activeIngredients.seasoning.name }}
                   <v-icon right @click="removeSeasoning">close</v-icon>
                 </v-chip>
@@ -31,8 +34,8 @@
           </v-card>
         </v-flex>
       </v-layout>
-      <!-- アクティブなingredientを管理 -->
 
+      <!-- タブで食材軍の種類を分けるところ -->
       <div>
         <v-tabs
           v-model="active"
@@ -51,25 +54,34 @@
           </v-tab-item>
         </v-tabs>
 
+        <!-- 下のボダン軍 -->
         <v-layout row wrap class="text-xs-center mt-3">
-          <v-btn color="info" @click="reload">リロード</v-btn>
+          <v-btn round fixed bottom="16px" color="#f6ffb2" @click="reload"
+            >リセット</v-btn
+          >
           <v-spacer></v-spacer>
           <v-btn
-            v-if="active === 2"
-            large
-            outline
+            v-if="isAllCategoryActive"
             round
+            fixed
+            right
+            bottom="16px"
             color="success"
-            @click="next"
-            >確認</v-btn
+            @click="toResult"
+            >確認画面へ</v-btn
           >
-          <v-btn v-else large outline round color="primary" @click="next"
+          <v-btn
+            v-else
+            round
+            fixed
+            right
+            bottom="16px"
+            color="primary"
+            @click="next"
             >次へ</v-btn
           >
         </v-layout>
       </div>
-
-      <v-layout row wrap> </v-layout>
     </v-container>
   </v-layout>
 </template>
@@ -90,7 +102,8 @@ export default {
       titles: TITLES,
       categories: CATEGORIES,
       active: 0,
-      btnText: '次へ'
+      btnText: '次へ',
+      isAlert: false
     }
   },
   computed: {
@@ -110,6 +123,9 @@ export default {
     isSeasoningActive() {
       return this.activeIngredients.seasoning !== null
     },
+    isAllCategoryActive() {
+      return this.isMainActive && this.isSideActive && this.isSeasoningActive
+    },
     ...mapGetters([
       'ingredients',
       'activeIngredients',
@@ -122,6 +138,13 @@ export default {
     next() {
       const active = parseInt(this.active)
       this.active = active < 2 ? active + 1 : 0
+    },
+    toResult() {
+      if (this.isAllCategoryActive) {
+        this.$router.push('/result')
+      } else {
+        this.isAlert = true
+      }
     },
     checkBtn() {
       if (this.active === 2) {
