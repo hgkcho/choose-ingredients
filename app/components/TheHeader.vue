@@ -1,8 +1,8 @@
 <template>
   <div grid-list-xs>
     <v-navigation-drawer v-model="drawer" clipped app>
-      <v-layout row wrap>
-        <v-btn fab small color="info" @click.stop="drawer = !drawer">
+      <v-layout hidden-sm mt-2 ml-2 row wrap>
+        <v-btn fab flat small color="info" @click.stop="drawer = !drawer">
           <v-icon>menu</v-icon>
         </v-btn>
       </v-layout>
@@ -30,10 +30,11 @@
       color="blue lighten-4"
       dense
       clipped-left
+      fixed
       app
       height="65px"
     >
-      <v-btn fab small color="info" @click.stop="drawer = !drawer">
+      <v-btn fab flat small color="info" @click.stop="drawer = !drawer">
         <v-icon>menu</v-icon>
       </v-btn>
       <!-- <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon> -->

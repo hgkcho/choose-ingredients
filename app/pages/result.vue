@@ -18,12 +18,20 @@
       <v-btn
         fixed
         round
-        bottom="16px"
+        bottom="24px"
         color="info"
         class="backButton"
         @click="backPage"
         >戻る</v-btn
       >
+      <v-layout>
+        <v-btn d-block color="success" :href="cookPadQuery"
+          >クックパッドでみる</v-btn
+        >
+        <v-btn d-block color="success" :href="kurashiruQuery"
+          >クラシルでみる</v-btn
+        >
+      </v-layout>
     </v-container>
   </v-layout>
 </template>
@@ -32,6 +40,12 @@
 import { mapGetters } from 'vuex'
 
 export default {
+  syncData() {
+    return {
+      cookPadQuery: '',
+      kurashiruQuery: ''
+    }
+  },
   computed: {
     ...mapGetters(['activeIngredients'])
   },
@@ -44,6 +58,13 @@ export default {
     ) {
       this.$router.push('/')
     }
+    const query =
+      this.activeIngredients.main.name +
+      '%20' +
+      this.activeIngredients.side.name +
+      '%20'
+    this.cookPadQuery = 'https://cookpad.com/search/' + query
+    this.kurashiruQuery = 'https://www.kurashiru.com/serach?query=' + query
   },
   methods: {
     backPage() {
