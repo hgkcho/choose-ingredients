@@ -1,6 +1,0 @@
-{
-  "title": "unchi",
-  "createdAt": "2019/05/12",
-  "body": "<h2>unchi</h2>\n<h2>subtitle</h2>\n<p>とりあえず書いてみた</p>\n<h2>subtitle_2</h2>\n<p>goood</p>\n<div class=\"danger\">\n<p>click me<br>\ncontent</p>\n</div>\n<div class=\"warning\">\n<p>why?<br>\nwhat&gt;</p>\n</div>\n<details><summary>click me</summary>\n<p><em>content</em></p>\n</details>\n",
-  "href": "/posts/2019-05-12/good"
-}
