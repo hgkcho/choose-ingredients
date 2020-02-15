@@ -57,6 +57,7 @@ export default {
     drawer: null,
     items: [
       { icon: 'home', title: 'home', text: 'home', href: '/' },
+      { icon: 'library_books', text: 'blog', href: '/posts/' },
       { icon: 'local_dining', text: '主菜', href: '/ingredients/main' },
       { icon: 'local_dining', text: '副菜', href: '/ingredients/side' },
       { icon: 'local_dining', text: '調味料', href: '/ingredients/seasoning' }
