@@ -12,7 +12,9 @@
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "fix": "eslint --fix --ext .js,.vue src",
     "precommit": "npm run lint",
-    "test": "jest"
+    "test": "jest",
+    "docs:dev": "vuepress dev docs",
+    "docs:build": "vuepress build docs"
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.3.6",
@@ -20,6 +22,7 @@
     "@nuxtjs/markdownit": "^1.2.4",
     "@nuxtjs/pwa": "^2.6.0",
     "@nuxtjs/sitemap": "^1.2.0",
+    "animejs": "^3.0.1",
     "axios": "^0.19.0",
     "command-line-args": "^5.1.1",
     "cross-env": "^5.2.0",
@@ -67,6 +70,7 @@
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.2",
     "vue-jest": "^3.0.3",
+    "vuepress": "^1.0.2",
     "webpack-bundle-tracker": "^0.4.2-beta"
   }
 }
