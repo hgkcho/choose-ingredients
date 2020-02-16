@@ -56,16 +56,17 @@
 
         <!-- 下のボダン軍 -->
         <v-layout row wrap class="text-xs-center mt-3">
-          <v-btn round fixed bottom="16px" color="#f6ffb2" @click="reload"
+          <v-btn round large fixed bottom="16px" color="#f6ffb2" @click="reload"
             >リセット</v-btn
           >
           <v-spacer></v-spacer>
           <v-btn
             v-if="isAllCategoryActive"
             round
+            large
             fixed
-            right
-            bottom="16px"
+            right="24px"
+            bottom="24px"
             color="success"
             @click="toResult"
             >確認画面へ</v-btn
@@ -73,9 +74,10 @@
           <v-btn
             v-else
             round
+            large
             fixed
-            right
-            bottom="16px"
+            right="24px"
+            bottom="24px"
             color="primary"
             @click="next"
             >次へ</v-btn
